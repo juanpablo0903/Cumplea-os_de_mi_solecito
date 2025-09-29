@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date().getTime();
         const distance = birthdayDate - now;
 
-        // Si el tiempo ya pasó
+        // Si el tiempo ya pasó, muestra la página
         if (distance < 0) {
             clearInterval(interval);
             showBirthdayContent();
@@ -25,28 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Mostrar en la página
+        // Muestra los resultados en la página
         document.getElementById('days').innerText = formatTime(days);
         document.getElementById('hours').innerText = formatTime(hours);
         document.getElementById('minutes').innerText = formatTime(minutes);
         document.getElementById('seconds').innerText = formatTime(seconds);
 
     }, 1000);
-    
-    // Función para añadir un cero si el número es menor a 10
+
+    // Función para añadir un cero delante si el número es menor a 10
     function formatTime(time) {
         return time < 10 ? `0${time}` : time;
     }
 
-    // --- LÓGICA PARA MOSTRAR EL REGALO ---
+    // Función para mostrar el regalo y lanzar confeti
     function showBirthdayContent() {
-        // Ocultar el contador
-        countdownSection.style.display = 'none';
-        
-        // Mostrar el contenido del cumpleaños
-        birthdayContent.classList.remove('hidden');
+        countdownSection.style.display = 'none'; // Oculta el contador
+        birthdayContent.classList.remove('hidden'); // Muestra el contenido
 
-        // Lanzar confeti 🎉
+        // Lanza confeti 🎉
         confetti({
             particleCount: 200,
             spread: 100,
