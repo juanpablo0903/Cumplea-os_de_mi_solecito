@@ -6,6 +6,247 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    /* == REGLA CLAVE: Previene el scroll horizontal no deseado == */
+    overflow-x: hidden; 
+}
+
+/* === PANTALLA DE BLOQUEO Y CUENTA REGRESIVA === */
+#lock-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    z-index: 100;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.lock-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5em;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 90%;
+    /* La línea de 'animation' ha sido eliminada */
+}
+
+.lock-content h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #d63384;
+}
+
+.lock-content p {
+    font-size: 1.1em;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1.5em;
+}
+
+.unit {
+    background-color: #fce4ec; /* Rosa claro */
+    padding: 1em;
+    border-radius: 10px;
+    min-width: 80px;
+}
+
+.unit span {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #c2185b;
+}
+
+.unit label {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* === CLASE PARA OCULTAR/MOSTRAR CONTENIDO === */
+.hidden {
+    display: none;
+}
+
+
+/* === ESTILOS DEL CONTENIDO PRINCIPAL === */
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2em 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8em;
+    color: #d63384;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+main {
+    padding: 1.5em;
+}
+
+section {
+    background: #ffffff;
+    margin: 2em auto;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #c2185b;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
+    margin-top: 1.5em;
+}
+
+.gallery-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 10px;
+    margin: 1.5em auto 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8em;
+    color: #d63384;
+    margin-top: 1.5em;
+    font-weight: bold;
+}
+
+footer {
+    padding: 1.5em;
+    color: #fff;
+    font-size: 0.9em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+/* El bloque de código @keyframes ha sido eliminado */
+
+/* ================================================================= */
+/* === MEJORAS PARA MÓVILES (PANTALLAS DE HASTA 600px) === */
+/* ================================================================= */
+@media (max-width: 600px) {
+
+    /* --- Ajustes en la pantalla de bloqueo --- */
+    .lock-content {
+        padding: 1.5em; /* Menos espacio interior */
+    }
+
+    .lock-content h2 {
+        font-size: 2em; /* Título más pequeño */
+    }
+
+    #countdown {
+        gap: 0.5em; /* Menos espacio entre los números */
+    }
+
+    .unit {
+        padding: 0.8em;
+        min-width: 65px; /* Hacemos las cajas más pequeñas */
+    }
+
+    .unit span {
+        font-size: 1.8em; /* Números más pequeños */
+    }
+
+    .unit label {
+        font-size: 0.8em; /* Texto (Días, Horas) más pequeño */
+    }
+
+    /* --- Ajustes en el contenido principal --- */
+    header h1 {
+        font-size: 2.2em; /* Título principal más pequeño */
+    }
+
+    h2 {
+        font-size: 2.1em; /* Títulos de sección más pequeños */
+    }
+    
+    p {
+        font-size: 1em; /* Párrafos ligeramente más pequeños */
+    }
+
+    section {
+        padding: 1.5em; /* Menos espacio interior en las secciones */
+        margin: 1.5em auto;
+    }
+}
+
+
+
+
+/* ======================================================= */
+/* == CORRECCIÓN 1: Mejorar el cálculo de tamaño de cajas == */
+/* ======================================================= */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilos generales y fuentes */
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    color: #4f4f4f;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* ============================================================== */
+    /* == CORRECCIÓN 2: Prohibir el desbordamiento horizontal (scroll) == */
+    /* ============================================================== */
+    overflow-x: hidden;
 }
 
 /* --- ESTILOS PARA LA CUENTA REGRESIVA --- */
@@ -13,9 +254,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh; /* Usar min-height en vez de height es más flexible */
     padding: 1em;
-    box-sizing: border-box;
 }
 
 .countdown-content {
@@ -23,6 +263,8 @@ body {
     padding: 2em;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 100%; /* Aseguramos que se ajuste */
+    max-width: 500px; /* Le ponemos un límite para pantallas grandes */
 }
 
 .countdown-content h1 {
@@ -158,55 +400,4 @@ footer {
     font-size: 0.9em;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 
-}
-
-
-/* ================================================================= */
-/* === MEJORAS PARA MÓVILES (PANTALLAS DE HASTA 600px) === */
-/* ================================================================= */
-@media (max-width: 600px) {
-
-    /* --- Ajustes en la pantalla de bloqueo --- */
-    .lock-content {
-        padding: 1.5em; /* Menos espacio interior */
-    }
-
-    .lock-content h2 {
-        font-size: 2em; /* Título más pequeño */
-    }
-
-    #countdown {
-        gap: 0.5em; /* Menos espacio entre los números */
-    }
-
-    .unit {
-        padding: 0.8em;
-        min-width: 65px; /* Hacemos las cajas más pequeñas */
-    }
-
-    .unit span {
-        font-size: 1.8em; /* Números más pequeños */
-    }
-
-    .unit label {
-        font-size: 0.8em; /* Texto (Días, Horas) más pequeño */
-    }
-
-    /* --- Ajustes en el contenido principal --- */
-    header h1 {
-        font-size: 2.2em; /* Título principal más pequeño */
-    }
-
-    h2 {
-        font-size: 2.1em; /* Títulos de sección más pequeños */
-    }
-    
-    p {
-        font-size: 1em; /* Párrafos ligeramente más pequeños */
-    }
-
-    section {
-        padding: 1.5em; /* Menos espacio interior en las secciones */
-        margin: 1.5em auto;
-    }
 }
