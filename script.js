@@ -1,60 +1,56 @@
-// --- ¡IMPORTANTE! CAMBIA ESTA FECHA ---
-// Formato: "Mes Día, Año HH:MM:SS" 
-const birthdayDate = new Date("Nov 18, 2025 00:00:00").getTime();
+document.addEventListener('DOMContentLoaded', () => {
 
-// Elementos del DOM
-const countdownContainer = document.getElementById('countdown-container');
-const birthdayContent = document.getElementById('birthday-content');
-const daysEl = document.getElementById('days');
-const hoursEl = document.getElementById('hours');
-const minutesEl = document.getElementById('minutes');
-const secondsEl = document.getElementById('seconds');
+    // --- CONFIGURACIÓN DEL CONTADOR ---
+    // ¡¡¡IMPORTANTE!!! CAMBIA ESTA FECHA POR EL CUMPLEAÑOS DE TU NOVIA
+    // Formato: 'Mes dia, año hh:mm:ss' -> Ejemplo: 'Nov 17, 2025 00:00:00'
+    const birthdayDate = new Date('Nov 18, 2025 00:00:00').getTime();
 
-// Actualizar el contador cada segundo
-const countdownInterval = setInterval(() => {
-    // Obtener la fecha y hora actual
-    const now = new Date().getTime();
+    const countdownSection = document.getElementById('countdown-section');
+    const birthdayContent = document.getElementById('birthday-content');
 
-    // Calcular la distancia entre ahora y la fecha de cumpleaños
-    const distance = birthdayDate - now;
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = birthdayDate - now;
 
-    // Si la cuenta regresiva terminó
-    if (distance < 0) {
-        clearInterval(countdownInterval); // Detener el contador
-        showBirthdayContent(); // Mostrar el contenido del cumpleaños
-        return;
+        // Si el tiempo ya pasó
+        if (distance < 0) {
+            clearInterval(interval);
+            showBirthdayContent();
+            return;
+        }
+
+        // Cálculos de tiempo
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Mostrar en la página
+        document.getElementById('days').innerText = formatTime(days);
+        document.getElementById('hours').innerText = formatTime(hours);
+        document.getElementById('minutes').innerText = formatTime(minutes);
+        document.getElementById('seconds').innerText = formatTime(seconds);
+
+    }, 1000);
+    
+    // Función para añadir un cero si el número es menor a 10
+    function formatTime(time) {
+        return time < 10 ? `0${time}` : time;
     }
 
-    // Cálculos de tiempo para días, horas, minutos y segundos
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // --- LÓGICA PARA MOSTRAR EL REGALO ---
+    function showBirthdayContent() {
+        // Ocultar el contador
+        countdownSection.style.display = 'none';
+        
+        // Mostrar el contenido del cumpleaños
+        birthdayContent.classList.remove('hidden');
 
-    // Mostrar el resultado en los elementos correspondientes
-    daysEl.innerText = days;
-    hoursEl.innerText = hours;
-    minutesEl.innerText = minutes;
-    secondsEl.innerText = seconds;
-
-}, 1000);
-
-// Función para mostrar el contenido y lanzar confeti
-function showBirthdayContent() {
-    countdownContainer.style.display = 'none'; // Ocultar cuenta regresiva
-    birthdayContent.classList.remove('hidden'); // Mostrar contenido
-
-    // Función para lanzar el confeti
-    function launchConfetti() {
+        // Lanzar confeti 🎉
         confetti({
-            particleCount: 150,
-            spread: 90,
+            particleCount: 200,
+            spread: 100,
             origin: { y: 0.6 }
         });
     }
-
-    launchConfetti(); // Lanzar al desbloquear
-    setInterval(launchConfetti, 8000); // Y seguir lanzando
-
-}
-
+});
