@@ -1,6 +1,6 @@
 // --- ¡IMPORTANTE! CAMBIA ESTA FECHA ---
 // Formato: "Mes Día, Año HH:MM:SS" 
-const birthdayDate = new Date("Sep 23, 2025 00:00:00").getTime();
+const birthdayDate = new Date("Oct 18, 2025 00:00:00").getTime();
 
 // Elementos del DOM
 const countdownContainer = document.getElementById('countdown-container');
@@ -55,4 +55,5 @@ function showBirthdayContent() {
 
     launchConfetti(); // Lanzar al desbloquear
     setInterval(launchConfetti, 8000); // Y seguir lanzando
+
 }
